@@ -1,0 +1,512 @@
+Angular version :
+Angular 1 called as AngularJs -> Angular 2 (complete rewrite of AngularJs) -> Angular 4(Angular 3 is skipped for internal reasons) -> 5,6,7,9
+-----------------------------    ------------------------------------------------------------------------------------------------------------
+    AngularJs                                                           Angular 
+	
+Creating new application : ng new app_name --no-strict (select routing and css options)
+                           ng serve (cd app_name,by default port number is 4200).
+						   keep server running while developing because angular automatically watch file and compiles.
+					
+package.json - contains all dependencies,devDependencies
+               node_modules folders included all requires dependencies which resides in package.json
+app -> src is imp folder includes all the files of project.
+app always includes :
+                     template the .html file  
+					 styling the .css file
+					 typescript the .ts file - data of this is converting into normal js 
+					 
+Data binding : inside app.component.ts file we have :  title = 'my-first-app';
+               insile app.component.html file we have : <span>{{ title }} app is running!</span>
+			                                                  ------------
+															  this is called as data binding
+If we inspect this code we cannot see the actual code.
+we can see <app-root> which is included in app.component.ts as selector: 'app-root' which is looks like own html tag.
+inside index.html file we can see <app-root></app-root>
+First we load index.html file and then <app-root></app-root> will load app.component.ts dynamically.
+
+Angular does not directly understand ngModel we need to add that in app.module.ts,
+for ngModel we need to add import { FormsModule } from '@angular/forms'; this is typescript feature.
+then add inside app.module.ts file :
+    imports: [
+    BrowserModule,
+    FormsModule
+  ],
+
+Learnign point :
+Basics -> Components & data bindings -> Directives -> services and dependency injections -> routing -> Observables 
+-> forms -> pipes ->http ->Authentication ->optimizations and ngModules -> Deployment -> Animation and testings
+
+Typescript : 
+Superset to JavaScript , typescript allows us mor typed verison. example : if we assign number to string its totally ok with typescript.
+Does not run in browser. Typescript ------------------- javascript
+                                        compiles to 
+
+Adding bootstrap command : npm install --save bootstrap@3
+Angular.json file includes all cli project files.
+
+Setting bootstrap file in package.json : node_modules/bootstrap/dist/css/bootstrap.min.css
+When we set this path we can see inspect element -> sources -> we can see styles.css file 
+                                                 -> Elements -> link -> styles.css 
+Angular in the end is a JS framework, changing your DOM ('html') at runtime.
+Components is the very imp in our angular application,We may build couple of components to build our application.	
+
+How to serve our apllication :
+app.component.ts file will not serve actually by cli,instead index.html file is serve by cli.
+line <app-root></app-root> will execute our own component,actually <app-root></app-root> is our own tag,not html tag.
+we defined app-root in app.component.ts file as selector,Selector name should be unique not same as existing html tag. 
+cli automatically injects all the tags and scripts.
+Whenever ng-serve rebuild our project it will create bundle javascript script bundles and automatically add right imports for us in index.html file.
+when we inspect the elements we can see our script files,those script files contains our code,
+this files are actually first executed the code we write in main.ts file.
+Bootstrap will start our angular apllication by passing an app.(line : platformBrowserDynamic().bootstrapModule(AppModule) in main.ts file)
+In app.module.ts file we have bootstrap array : providers: [],
+                                                bootstrap: [AppComponent]
+                                                        --------------------
+                                                          
+Angular apllication started with main.ts file 
+                   |
+Angular apllication bootstrapped in app.module.ts file
+                   |
+in app.module.ts file we have bootstrap: [AppComponent]	
+                   |
+AppComponent meaning : app.component.css
+                       app.component.html  
+                       app.component.ts 
+                       app.component.spec.ts 
+                   |
+app-root selector is placed in app.component.ts file (selector: 'app-root')
+                   |
+Angular is able to handle app-root in index.html file.
+
+Component :
+Component is the class (just type class)
+the app component holds our entire application,its is root component,at end we nest our own component to it.
+core idea behind component is to build component -> each component has its own template (.html file) -> may be have its own styling -> its own business logic 
+so,it allows us to split our big application into small part,whih reduce complexity
+we can reuse our components.	
+For each new component make new folder,its good programming practice.
+export class so that we can use it outside file,after exporting its normal typescript class but use decorator to enhance it as component.
+Decorators is typescript feature which enhance our classes,elements,its not resctricted to class.
+we need to pass javascript object to @component decorator , add selector in it.
+ex.in server.component.ts file we define selector and the template url :
+    selector :'app-server',
+    templateUrl : './server.compnent.html' 
+so the angular uses component to build web pages.
+manually create component : right click on app folder ->new folder -> right click on new folder -> new file -> new-file.component.ts
+---------------------------
+cli command to create new component : ng generate component component-name or 
+------------------------------------  ng g c component-name (ng g c servers)
+
+Modules :
+Module is just a empty typescript class 
+Angular uses modules to bundle different pieces,it is bundle of functinalities presenting our app.In module we use the NgModule decorator 
+which is imported by angular/core,we set 4 impotant properties in NgModule : 1.declarations:
+                                                                             2.imports:
+																			 3.providers:
+																			 4.bootstrap:(in app.module.ts file)
+						1.declarations:-defining of new component is not enough need to declare in app.module.ts,
+						  so we basically do register new component in app.module.ts-> NgModule->declarations:
+						  this is not just thing,we also need to import those details ex : import { ServerComponent } from './server/server.component';
+we cannot directly add <app-server></app-server> in index.html file, so we add it into app.component.ts file
+
+Components template : Instead of creating new .html file we can add html code in .ts file.
+We can do this by using template:<app-server></app-server> in servers.component.ts file instead of templateUrl: './servers.component.html'
+                        ----------------------------------                                         ---------------------------------------
+Styles : We can give styles to our template using .css file or we can add styles:['h3{ color : dodgerblue;}'] instead of styleUrls:
+
+Selector : 
+           1. we can write selector like css attribute,instead of selector.
+              selector:'[app-servers]',
+              write app.component.html file : <div app-servers></div>
+		   2. we can write selector like css class,instead of selector & css attribute.
+		      selector:'.app-servers',
+			  write app.component.html file : <div class="app-servers"></div>
+			  
+Assignment  : create 2 components (manually/using cli cmd)
+              output them in beneath each other in AppComponent
+			  Output a warning or success message in the component 
+			  Style the component appropriately (maybe green / red color)
+			Use internal/external components,nest them into each other or play around with different types of selectors.
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Data Binding :
+We basically translate databinding with communication.Communication between typescript class (Business logic)and template(HTML).
+We can show output to the user in four ways : Output Data using html tags                   
+                                              String interpolation ({{ data }})
+											  Property Binding ( [property]="data")
+User might react on events : Event binding ((event)="expression")											  
+Combination of both binding : two way binding ( [(ngModel)]="data")
+
+String interpolation : Greate for outputing data in html template.
+----------------------
+we can not add multiline instruction , block statement
+If we dont want hard-coded values,we want dynamic output then we use stirng interpolation.
+Ex :in server.component.html template we need to show message : Server id is ------ and server status is ------ (10,offline) then ,
+1.Go to server.component.ts file - >  export class ServerComponent
+                                    {
+										serverid : number = 10;
+										serverstatus : string = "offline";
+									}
+2.Go to server.component.html file - > <p>Server id is : {{ serverid }} and it is {{ serverstatus }}</p>
+
+returning output with method :
+1.Go to server.component.ts file - >  export class ServerComponent
+                                    {
+										serverid : number = 10;
+										serverstatus : string = "offline";
+									}
+									getserverStatus ()
+								   {
+									   return this.serverstatus;
+								   }
+2.Go to server.component.html file - > <p>Server id is : {{ serverid }} and it is {{ getserverStatus () }}</p>
+
+Property Binding : By using property we can bind properties dynamically.
+------------------
+Property binding in Angular helps you set values for properties of HTML elements or directives.
+With property binding, you can do things such as toggle button functionality, set paths programmatically, and share values between components.
+Dynamically update property.
+I we want to set current value of new server print we can use string interpolation 
+If we want to output something in our template , want to print some text use string interpolation
+If we want to change some property period of html element use property binding.
+
+Event Binding :   it uses ().inside parenthesis we need to specify event name.
+----------------
+We can basically bind to all properties and events - a good idea is to console.log().
+
+If we have text field and we want to fetch that data we can use $event,this we can use at the time of event binding  
+
+============================================================================================================================
+Routing : 
+==========
+#basic
+1.create Routes array
+syntax : const appRoute:Routes=[]
+2.this array holds js obj'
+syntax : const appRoute:Routes=[{path : 'pathName',component : 'ComponentName'}]
+3.import RouterModule in import array
+imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule
+  ],
+4.reg our constant appRoute to know angular
+imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(appRoute)
+  ],
+5. go to html file,try to access our code using <router-outlet></router-outlet> instead of app-selector's.
+6. go to browser enter (ex): localhost:4200 - homecomponent , localhost:4200/servers , localhost:4200/users
+
+#loading app using routerLink
+1.earlier <a href='something'></a> was reloading whole application.
+2.every time app was sending req to server and server was giving new page
+3.Using routerLink only routes our app not reload.
+4.syntax : ex. <a routerLink="/">Home</a> <a routerLink="/servers">Servers</a> 
+                              or
+we can write :	<a [routerLink]="['/users']">Users</a> 
+
+#Navigation path 
+1.if we remove '/' still it will work : <a routerLink="servers">Servers</a>
+2.<a routerLink="servers">Reload Page</a> relative path localhost:servers/servers
+  <a routerLink="/servers">Reload Page</a> absolute path localhost:servers
+
+#Navigating programatically
+1.create button in html file :  ex. <button class="btn btn-primary" (click)="onLoadServer()">Load Server</button>
+2.inject router service in .ts file 
+  ex. constructor(private router:Router) { }
+  onLoadServer()
+  {
+     this.router.navigate(['/servers']);
+  }
+
+#Passing Parameters to Routes
+1.add { path:'users/:id',component:UserComponent}, in app.module.ts
+2.http://localhost:4200/users/1 will get single user component loaded.
+
+#Fetching route component 
+1.ex : add { path:'users/:id/:name',component:UserComponent},
+2.ex : user.component.html <p>User with ID {{ user.id }} loaded.</p>
+                           <p>User name is {{ user.name }}</p>
+3.ex : add user.component.ts 
+
+       export class UserComponent implements OnInit {
+       user: {id: number, name: string};
+       constructor(private route:ActivatedRoute) {}
+       ngOnInit() {this.user={
+         id:this.route.snapshot.params['id'],
+         name:this.route.snapshot.params['name']}}}
+
+#fetching route parameters reactively
+1.constructing route /users/10/Anna
+ ex : <a [routerLink]="['/users',10,'Anna']"></a>
+2.add : 
+ ex :
+ export class UserComponent implements OnInit {
+  user: {id: number, name: string};
+ constructor(private route:ActivatedRoute) {  }
+  ngOnInit() {
+  this.user={
+    id:this.route.snapshot.params['id'],
+    name:this.route.snapshot.params['name']
+    };
+    this.route.params
+    .subscribe(
+      (params:Params)=>{
+        this.user.id=params['id'];
+        this.user.name=params['name'];
+      });}}
+
+#IMP note about observables
+if we are subscribing router we should destroy the same.
+1.implement ngOnDestroy and add ngOnDestroy() method.
+2.create js object : paramSubscription:Subscription;
+3.implement ngOninit() method.
+  ngOnDestroy(){
+      this.paramSubscription.unsubscribe();
+  }
+
+#passing query parameter and fragment 
+1.create new route { path:'servers/:id/edit',component:EditServerComponent}
+2.in servers.components.html add routerLink
+  ex.  <a
+        [routerLink]="['/servers',5,'edit']" //hit localhost:4200/
+        href="#"
+        class="list-group-item"
+        *ngFor="let server of servers">
+        {{ server.name }}
+      </a>  
+3.add query param
+[queryParams]="{allowEdit:'1'}"
+4.add fragment 
+fragment="loading"
+5.refer file : routing-start\src\app\servers\servers.component.html
+6.Output: http://localhost:4200/servers/5/edit?allowEdit=1#loading
+7.or we can add ex : 
+  onLoadServer(id:number)
+  {
+     this.router.navigate(['/servers',id,'edit'],{queryParams:{allowEdit: '1'},fragment: 'loading'});
+  }
+
+#retrieving query parameter and fragment
+1.get access to query parameter inject ActivatedRoute
+2.we can access in 2 diff ways :
+  ngOnInit() {
+    I.console.log(this.route.snapshot.queryParams);
+    console.log(this.route.snapshot.fragment);
+    II.this.route.queryParams.subscribe();
+    this.route.fragment.subscribe(); }
+
+#Practicing some common gotches
+users.component.html
+users.component.ts
+servers.component.html
+servers.component.ts
+app.module.ts
+
+#child routing links
+1.Add children array in app.module.ts
+EX.
+const appRoute:Routes=[
+{ path: '', component:HomeComponent},
+{ path:'users', component:UsersComponent,children:[
+  { path:':id/:name',component:UserComponent},
+  ]},
+{ path:'servers',component:ServersComponent,children:[
+  { path:':id',component:ServerComponent},
+  { path:':id/edit',component:EditServerComponent}    
+]},
+];
+2.Instead of app-selector use <router-outlet></router-outlet> in html file.
+
+#Using query parameter
+1.add 1 button in routing-start\src\app\servers\server\server.component.html
+ex.<button class="btn btn-primary" click()="onEdit()">Edit Server</button>
+2.define onEdit() method in routing-start\src\app\servers\server\server.component.ts
+  onEdit() method useful to navigate to edit-server-component
+3.Navigating steps
+  -injecting Router service 
+  -navigate using navigate() method (using relative path)
+   ex : this.router.navigate(['edit']);
+  -setup relativeTo() method 
+   ex :  this.router.navigate(['edit'], { relativeTo:this.route} );
+4.Checking server ID and if its not equal to 3
+5.define allowEdit = false; and use like below
+this.route.queryParams.subscribe(
+      (queryParams:Params)=>{
+        this.allowEdit=queryParams['allowEdit']==='1'?true:false;
+      }
+    );
+
+#Redirecting and Wildcard routes
+Ex. 
+[{ path:'some',component:PageNotFoundComponent },
+{ path:'**',redirectTo:'/some'}
+];
+
+#Outsourcing the route configuration
+creation of app-routing.module.ts
+
+#route guard
+1.functinality, Logic, Code which is executed before a route is loaded or once you want to leave route 
+
+#protecting routes using CanActive
+feature defined by Angular which allows us to run some code at a point of time defined by us.
+1.creation of routing-start\src\app\auth-guard.service.ts and routing-start\src\auth.service.ts classes
+2.add in app-routing.module.ts
+
+#using canActivateChild
+1.Implement CanActivateChild
+2.Implement method :
+  ex :
+   canActivateChild(route: ActivatedRouteSnapshot, 
+                    state: RouterStateSnapshot): 
+                    boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+                    return this.canActivate(route,state);
+                }
+3. Define in app.module.ts 
+{ path:'servers', 
+    //canActivate:[AuthGuard], 
+     canActivateChild:[AuthGuard],
+     component:ServersComponent,children:[
+      { path:':id',component:ServerComponent},
+      { path:':id/edit',component:EditServerComponent}    
+    ]},
+
+#controlling navigation and canDeactivate
+refer routing-start\src\app\auth-guard.service.ts
+
+#static and dynamic resolve guard
+
+#Understanding location strategies
+imports:[
+    RouterModule.forRoot(appRoute,{useHash: true})
+],
+===================================================================================================================================================
+Understanding Observables :
+============================
+#Observable :
+-Observables is various Data Sources,(User Input )Events,Http Requests,triggered in code
+-Observables is Object that we import from 3rd party package rxjs.
+-Observables is implemented that follows the Observable pattern so we have Observable and Observer . in between we have stream (timeline),we can have multiple 
+events emitted by the observables or data packages.
+-an event in a data package is emitted automatically or as angular http service does it.its connected to http request.
+Observer :
+-its subscribtion function
+-we can handle data package in 3 ways : Handle data, Handle Error, Handle Completion
+
+
+                                                                Observables
+											Various data sources events , http requests , Triggered in code
+											================================================================>>
+											           You write the code which gets executed
+												Handle data       Handle error      Handle completion
+												                   Observer
+																   
+
+#Install rxjs :
+npm install --save rxjs@6
+npm install --save rxjs-compat
+
+#core of observables :
+-we need to subscribe our Observable
+-Observables keeps emitting which result memory leak problem
+-we can solve memory leak problem using unsubscribe method
+-Ex :
+export class HomeComponent implements OnInit, OnDestroy {
+  private firstObsSubscription: Subscription;
+  constructor() { 
+  }
+
+  ngOnInit() {
+    this.firstObsSubscription=interval(1000).subscribe(count=> {
+      console.log(count);
+    });
+  }
+  ngOnDestroy(): void {
+      this.firstObsSubscription.unsubscribe();
+  }
+
+}
+-For the Observables provided by angular unsubscribe of observables done by angular.
+
+#Custom Observables
+in HomeComponent.ts :
+1.import { interval, Subscription, Observable } from 'rxjs';
+2.private firstObsSubscription: Subscription;
+3.const customIntervalObservable = Observable.create(observer=>{
+      let count = 0;
+       setInterval(()=>{
+         observer.next(count);
+         count++;
+       },1000)
+    });
+    this.firstObsSubscription=customIntervalObservable.subscribe(data=>{
+      console.log(data);
+    })
+  }
+4.  ngOnDestroy(): void {
+      this.firstObsSubscription.unsubscribe();
+  }
+
+#error and completion
+An error cancels the observables it does not complete it , Technically in both case , no new values are emitted.
+ex :
+const customIntervalObservable = Observable.create(observer=>{
+      let count = 0;
+       setInterval(()=>{
+         observer.next(count);
+         if(count==2){
+           observer.complete();
+         }
+         if(count>3){
+           observer.error(new Error("Count is greater 3!"));
+         }
+         count++;
+       },1000)
+    });
+    this.firstObsSubscription=customIntervalObservable.subscribe(data=>{
+      console.log(data);
+    },error=>{
+      console.log(error);
+      alert(error.message);
+    }, ()=>{
+      console.log('completed!');
+    });
+  }
+
+#Understanding Operator 
+-Operator is the feature of rxjs library
+#Understanding subjects
+==================================================================================================================================================
+Useful Resources:
+
+Official Docs: https://rxjs-dev.firebaseapp.com/
+
+RxJS Series: https://academind.com/learn/javascript/understanding-rxjs/
+
+Updating to RxJS 6: https://academind.com/learn/javascript/rxjs-6-what-changed/
+===================================================================================================================================================
+Reactive forms in angular :
+-import ReactiveFormsModule in app.module.ts file.
+-For each html control create FormGroup instance 
+ex . export class AppComponent implements OnInit{
+     genders = ['male', 'female'];
+     signupForm:FormGroup;
+ 
+     ngOnInit(){
+     this.signupForm=new FormGroup({
+      'username':new FormControl(null),
+      'email':new FormControl(null),
+      'gender':new FormControl('female') })
+	  
+-Inform angular to take own formGroup via property binding : <form [FormGroup]="signupForm">
+form we created in typescript is now synchronized with html
+control should be connected to the input template,for that we use FormControlName="" : FormControlName="username" 
+OR via property binding [FormControlName]="'username'"
+ex : <input type="text" id="username" FormControlName="username" class="form-control">
+
+-Including validation : 'username':new FormControl(null,Validators.required),
+    'email':new FormControl(null,[Validators.required, Validators.email]),
+We have Validators class to add validation on any input control.
+===================================================================================================================================================

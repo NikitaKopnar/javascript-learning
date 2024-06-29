@@ -1,0 +1,267 @@
+JS provides powerfull toolkit of different function.
+Its powerfull programming language that can access and modify virtually any element on a web page.
+We can add JS code in <script> tag 
+  - In head section
+  - In body section
+
+Navigating to a url with a Button :
+Open in new window :
+<body>
+<input type="button" name="register" id="reg" value=" Search Google" onclick="window.open('https://www.google.com','_blank')"/>
+</body>
+
+Alert :
+alert("Hello world");
+confirm :
+confirm("Are you sure want to continue ?");
+
+1.Introduction to JavaScript :
+-It is a programming language used to create functionality in the web page.
+-Functionality ==>> reading input -> performing the process -> providing the output.
+-ex : Displaying menu when user clicks on menu icon.
+-Html is markup language and js is programming language.main difference between markup language and programming language is : 
+markup language includes only scripts and performing language have logic to execute.
+-As it is a programming language,it provides all the programming concepts such as variables,data types,contol statements,operators,arrays,functions etc.
+-JS is case sensitive language Ex : getElementsByClass - correct
+                                    getelementsByClass - wrong
+-The developer should follow uppercase and lowercase letters exactly.
+-It is Object oriented programming language.
+-It is developed by Netscape Corporation in 1996
+-Syntax of javascript program :
+ 1.Embedded javascript or internal javascript ->With .html extension we have js and html code
+                                                filename.html -> html code
+								                javascript code
+												Advantage : easy to understand
+												            No confusion of multiple files
+												Disadvantage : If code size is increases then it will create confusion.
+												Conclusion : Suitable for practice time/learning time.
+ 2.External javascript : We always saparate fileS html and js.
+                         filename.html -> html code
+						 filename.js -> js code
+						 We have to load js file into html 
+						 
+				-HTML code will be written in ".html file";JavaScript code will written in ".js file".
+				-Advantage : even though the code increases, the developer can understand the code easily.
+				             1 js file can be load into multiple html file.(re-usability).
+				-Disadvange : No.of files will be increased.
+Working with Internal JavaScript :
+filename.html
+1. :
+    <head>
+    <script>
+           js code
+    </script>
+    </head>
+	disadvantage : user will not see the output until the excution of both html and js code is finished 
+2. : 
+     <body>
+	       content here 
+		   <script>
+		         jd code
+		   </script>
+	 </body>
+     Advantage : User will see output, immediately after completion of execution of html code in <body>
+	 
+Output Statement in javascript :
+-Purpose of output statement is to display some output value to user.
+-"console.log()" is the output statement in js.
+-syntax : console.log(value);
+ Note : we have to see output in browser console,press F12 or right click in the web page,click on inspect element.
+ 
+ Variables :
+ -Named memory locationn in RAM ,purpose of variables is to store value.
+           ---------
+ -variable | value |   - variable's name cant be changed , variable value can be changed.
+           ---------
+		   Ex : x-10 we can't change variable name "x".
+		   we can change value of "x" variable any no.of times and at any point of time.
+		   var keyword to declare variable.Syntax : var variablename;
+		   In js we can change variable data type and value,only name cannot be changed.
+		   creation/Declaration of variables :
+		       var variablename;
+			   Note : "var" is a keyword,which is used to declare a variable.
+			          When the variable is declared,memory will NOT be allocated.
+					  When we assign the value,sufficient memory will be allocated.
+					  In javascript, variable's "data type" can be changed.That means we can store any type of value in the variable.
+
+2.Operators in javascript :
+-Operator is a symbol to perform operation.
+-Operands are the input values that we pass to the operator to perform operation.
+-Types of operator:
+ 
+ 1.Arithmatical operator : + addition , - subtraction , * multiplication , / Divide , % remainder
+ 
+ 2.Assignment operator   : Used to assign value into variable.
+                           = equal to (right value will copy to left side ), += add and assigns to, 
+						   -=subtraction and assign to , *= multiply and assign to , 
+						   /= divide and assign to , %= remainder and assign to
+ 
+ 3.Increment and Decrement operator : ++ +=1 (or) variable=variables+1, -- -=1 (or) variable=variables-1
+ 
+ 4.Relational operator   :  == equals (comparison) , != not equal , < less than , > greater than , <= less than or equal to , >= greater than or equal to.
+ 
+ 5.Logical operator      : If we need to check conditions we use logical operators.
+                           && AND (Both conditions must be true)
+						   || OR (at least any one condition should be true)
+						   !  NOT (Given condition will be reverse)
+ 6.Concatenation operator : + used for concatination 
+                            + is used to attach two strings(That means at the end of first string the second string will be added)
+							number + number = addition
+							string + number = concatenation
+							number + string = concatenation
+							string + string = concatenation 
+							
+3.JavaScript control statements : looping , if statements 
+By default, all the statements executes in sequential order (top to bottom).
+In order to change (control) the execution flow of the statements, we have to use control statements.
+Types of control statements :
+   1.Conditional control statements -> if and switch case
+   2.Looping control statements -> while , do-while , for
+    
+      i> if : if you want to check condition first;and execute the statements only when the condition is TRUE;then use "if".
+	     Types : if (Simple if ), if-else , else if , nested if 
+		 
+		        if (Simple if ) : Entry
+				                 if(condition) - false
+								       |
+									  True
+				                 {
+								  Statements
+								 }
+								  Exit 
+								  
+	  ii> if-else : if(condition)
+	                {
+					 statement
+					}
+					else
+					{
+					 statement
+					}
+					
+	 iii> else-if : n-number of alternate conditions checking
+	                if -true
+					{
+					   statement -
+					}
+					else if (condition)
+					{
+					    statement
+					}
+					else if (condition)
+					{
+					   statements
+					}
+					else
+					{
+					    statements
+					}
+					
+	  iv> Nested if : Inside if we have another if.
+	                  if(condition)
+		             {
+					    statements
+						if(condition)
+						{
+						  statements
+						}
+						statements -- Exit
+		             }
+	   Switch case :
+	   ---------------
+	   only one variable and multiple possibilities.
+	   When you have one variable with many possibilities, use "switch case".
+	   
+	        Entry 
+			   |
+	   switch(variable)
+	   {
+	       case val1: ---------; break; -> exit
+		   case val2: ---------; break;
+		   case val3: ---------; break;
+		   case val4: ---------; break;
+		   case valn: ---------; break;
+		   default:   ---------; break;
+	   }
+	   
+	   Looping :
+	   ---------
+	   i> while :It is used to excecute the code repeatedly,while the condition is TRUE.
+	             It checks the condition and execute the code;again it repeates the same process as-long-as the condition is TRUE.
+				 Once the condition is false,it stops terminates (stops) the loop.
+				 
+				 loop entry :
+				 while(condition)
+				 {
+				   Statements
+				 }
+				 loop exit
+				 
+	   ii> do-while : It is also same as "while" loop , to execute the code repeatedly as-long-as the condition is true.
+           at least once this loop get execute.
+            loop entry
+			do
+            {
+			  statements
+            }while(condition);		
+			loop exit 
+		
+	  iii> "for" loop : It is also same as "while";but we will write the loop related statements(initialization,condition,and incrementation)in a single line;
+	                    So that it will be easy to understand.
+						Syntax : loop entry
+						         for (initialization;condition;incrementation)
+						         {
+								    statements
+								 }
+								 loop exit
+								 
+4.Functions : Function is a collection of statements, to perform some specific operation (work).
+              Syntax : function keyword is used to define any function.
+			          
+					function functionName(parameter 1,parameter 2,---,parameter n)
+					{
+					  statements
+					  return (value);
+                    }					
+    "Arguments"-predefined variable : It is used to represent all the argument values that are received by the current function.
+	It is a pre-defined variable that can be used only in the functions.
+	arguments : Returns collection of all argument value.
+	arguments[index] : Returns the single argument value based on given index.
+	arguments.length : Count of argument values received.
+	
+     Recursion : function functionName()
+	             {
+				    if(condition)           A function calls itself.
+					{
+				      functionName();
+					}
+				 }
+				 
+				 ex: factorial
+				 n=5
+				 factorial of "n" 5*4*3*2*1
+				 
+				 factorial(n)
+				 ==> factorial(5)
+				 ==> factorial(5*factorial(4))
+				 ==> factorial(5*4*factorial(3))
+				 ==> factorial(5*4*3*factorial(2))
+				 ==> factorial(5*4*3*2factorial(1))\
+				 ==>factorial(5*4*3*2*1)
+	
+5.Object Oriented programming in javascript : Whenever a programming language depends the concepts of "Objects",it is called as "Object Oriented Programming(OOP)" language.
+JavaScript is OOP language.
+
+    What is object : A physical item that exits in the real world is called as "object".
+	                 It may be a person/a thing.
+					 Developers have to create the objects.
+					 Object contains properties and methods inside an object.
+					 We can create any no. of object inside the programs.
+	What is property : Property is a detail about object.
+	                   properties are stored inside the same object itself.
+	What is method : Methods also called as "functions".
+	                 Functions that are stored inside the object are called "methods".
+			Example of car object :
+			carno:1234                    start()
+			carmodel:Vento                changeGear()
+			carcolor:White                stop()

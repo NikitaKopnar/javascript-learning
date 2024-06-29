@@ -1,0 +1,184 @@
+What is Angular ??
+Angular 8 is a TypeScript based full-stack web framework for building web and mobile applications.
+-----------------------------------------------------------------------------------------------
+
+ADVANTAGES :
+
+Features that are provided out of the box
+Declarative UI
+1. AOT : This compilation helps convert the HTML and TypeScript into JavaScript during the build time process.
+   AOT compiles the code and the browser loads the compiled code for faster rendering.
+2. Command Line Interface helps to create and serve angular applications.
+   It takes care of project building and makes testing more accessible.
+   CLI is a command line program that accepts text input to execute operating system functions
+3. the action performs dynamically in the current page without loading the new page from the server
+4. Reusable UI components.
+--------------------------------------------------------------------------------------------------
+
+Features :
+Web worker − It is running in the background (executing js application), without affecting the performance of a page(means UI).
+Lazy loading − Angular 8 splits AppRoutingModule into smaller bundles and loads the data in the DOM.
+Differential loading − When you create an application,
+ 		       Angular CLI generates modules and this will be loaded automatically then browser will render the data.
+------------------------------------------------------------------------------------------------
+
+COMPONENT
+The core of the Angular framework architecture is Angular Component.
+Angular Component is the building block of every Angular application.
+CMD : ng generate component name
+------------------------------------------------------------------------
+
+MODULE
+Angular Module is basically a collection of related components, directives and pipes.
+Angular Module groups multiple components and services under a single context.
+---------------------------------------------------------------------------------
+
+SERVICES
+Services are plain Typescript / JavaScript class providing a very specific functionality.
+Services will do a single task and do it best. The main purpose of the service is reusability.
+Instead of writing a functionality inside a component, separating it into a service will make it useable in other component as well.
+--------------------------------------------------------------------------------------------------------------------------------
+
+DEPENDENCY INJECTION
+Dependency Injection is used to properly initialise the service in the component so that the component can access 
+the services as and when necessary without any setup.
+all registered services are accessible to all Angular components through Dependency Injection (DI) framework.
+---------------------------------------------------------------------------------------------------------------------
+
+DIRECTIVES
+extends HTML tags with @directive decorator.
+Directives enables logic to be included in the Angular templates.
+Attribute directives : Used to add new attributes for the existing HTML elements to change its look and behaviour.
+Structural directives : Used to add or remove DOM elements in the current HTML document.
+---------------------------------------------------------------------------------------------------------------------
+
+WORKING FLOW
+index.html --> main.ts --> app.module.ts --> app.component.ts + app.component.html
+------------------------------------------------------------------------------------------------------------------
+
+WHAT IS NPM ?
+npm is the package manager for the Node JavaScript platform.
+It puts modules in place so that node can find them, and manages dependency conflicts intelligently.
+--------------------------------------------------------------------------------------------------------- 
+
+WEB WORKERS
+Web workers enables JavaScript application to run the CPU-intensive in the background 
+so that the application main thread concentrate on the smooth operation of UI. 
+---------------------------------------------------------------------------------------------------------------
+
+Features :
+Application state(data) is written in component
+App logic written in component
+Design logic is written in template
+Bussiness logic is written in service
+----------------------------------------------------------
+Goals and advantages :
+seperation of DOM manipulation logic and application logic
+seperation of HTMl logic and application logic
+seperation of bussiness logic and application logic
+modules make code maintainable
+single page application is easier
+make the code testable (karma and jasmine is testing tools)
+---------------------------------------------------------------
+Code compilation process:
+Application source code -> typescipt compiler(tsc) -> javascript code
+html templates -> angular compiler(ngc) -> javascript code
+------------------------------------------------------------------
+Bulding Blocks :
+components - App data + event handlers
+Templates - design logic
+Data binding - mediates b/w components and templates
+Modules - collection of components
+Services - Bussiness logic + AJAX calls
+DI - loads service objects into components (objects are created at run time automatically)
+Directives - Direct DOM manipulation
+-----------------------------------------------------------------------------------------------------------------------------------
+Angular Packages :
+@angular/core : provides essential pre-defined decorators,classes,interfaces,modules 
+		that are needed to run every angular application
+@angular/common : provides builtin directives that are useful for most of the real-time applications
+@angular/compiler : compiles templates into js code
+@angular/platform-browser-dynamic : invokes angular compiler and specifies the startup module and aslo start 
+				    executing application
+@angular/platform-browser : provides a set of pre-defined classes that are related to DOM and browser interaction
+@angular/forms : provides necessary pre-defined classes that are related to create and execute angular forms
+@angular/router : provides necessary pre-defined clsses that are needed to create and execute angular routes
+@angular/animations :  provides necessary pre-defined clsses that are needed to create and execute angular animations
+@angular/cli : provides necessary pre-defined commands that are needed to create,compile,build,add items in angular applications
+rxjs : provides necessary pre-defined clsses for creating obervables,which are needed to represent the response of REST-API calls of Ajax
+zone.js : provides necessary pre-defined clsses for executing change detection process while executing angular app
+-------------------------------------------------------------------------------------------------------------------------------------
+Data Binding :
+Relationship between Template's HTML element and component property
+1) Interpolation binding {{ }}
+2) Property binding [ ]
+3) Event binding ( )
+4) Two-way binding [( )]
+--------------------------------------------------------------------------------------------------------------
+Style handling:
+ngclass : If we have to apply css class dynamically we can use [ngclass]
+[style.property] = "value"
+[style.property] = (cond)? 'value1' : 'value2'
+---------------------------------------------------------------------------------------------------------------
+ngSwitch :
+<tag [ngSwitch] = "property">
+<tag *ngSwitchCase = "'value'">Content</tag>
+---------------------------------------------------------------------------------------------------------------
+SERVICES :
+Steps to work with services - 1. Create service class
+			      2. make ready the service for DI
+			      3. provide service globally/locally :
+				 1) Add providedIn: "root" option in @Injectable() decorator
+				 2) Add providers: [Service] in AppModule's metadata
+				 3) Add providers: [service] in any other module's metadata
+				 4) Add providers: [Service] in any other component's metadata
+			      4. inject service into actual component :
+				 1) Add @Inject(Service) private referenceVariable : Service in 
+				    any component's constructor
+				 2) Add private referenceVariable : Service in 
+				    any component's constructor
+----------------------------------------------------------------------------------------------------------------
+OBERVABLE AND OBSERVER :
+Observables and Observer is a pattern of message passing from publisher to subscriber.
+Observable sends notification to observer.
+Observable(user inputs/HTTP request/Data source)
+Obsever has three functions : handle data, handle error, handle completion
+----------------------------------------------------------------------------------------------------------------
+AJAX :
+Asynchronous javacript and XML is a concept, which is used to send background request to server and get bg
+response from server without refreshing th web page in browser.
+----------------------------------------------------------------------------------------------------------------
+RxjS :
+the "Map" is a RxJS operator, which executes a function after recieving response from the server.
+-----------------------------------------------------------------------------------------------------------------
+JWT :
+it is used for authentication
+it contains 3 parts :
+1) Header -> it contains type and hash algo
+2) payload -> username and timestamp
+3) signature -> secret key used to hash the data
+Don,t store JWT in cookies its not safe
+always enable HTTPS  while using JWT
+-----------------------------------------------------------------------------------------------------------------
+HTTP interceptors:
+It is a class that executes as middleware between Httpclient and HttpXhrBackend.
+HttpClient is a service used to create http requests.
+HttpXhrBackend is a low level angular API which creates and send actual XMLHttprequest
+
+Classes to use while working with Interceptors:
+HttpInterceptor(interface) -> represents Interceptor that handles HttpRequest and HttpResponse
+HttpRequest(class) -> represents a full outgoing request with request headers,body,parameters
+HttpResponse(class) -> represents a full incoming response(200) with response headers, body, statuscode,statustext
+HttpErrorResponse(class) -> represents a full incoming response(400) with response headers, body, statuscode,statustext
+HttpHandler(class) -> transform a Httprequest into a stream of HttpEvent's
+HttpEvent -> Represents different events that occur after sending request, such as HttpSentEvent, HttpHeaderResponse,
+	     HttpResponse,HttpProgressEvent
+---------------------------------------------------------------------------------------------------------------------
+GUARD :
+Guard is a service which can tell the router whether the current user can navigate to a specific route or not.
+---------------------------------------------------------------------------------------------------------------------
+XSRF(cross site request forgery) :
+It is an attack to the web site, by making a request based on user's previously authenticated session
+XSS(Cross site scripting) :
+It is an attack to the web site by injecting mallcious javascript into HTML elements of the application
+-------------------------------------------------------------------------------------------------------------------------

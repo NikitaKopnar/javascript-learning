@@ -1,0 +1,78 @@
+WHAT IS ANGULARJS??
+AngularJS is a very powerful JavaScript Framework. It is used in Single Page Application (SPA) projects.
+It extends HTML DOM with additional attributes and makes it more responsive to user actions.
+
+ADVANTAGES OF ANGULARJS :
+1. AngularJS code is unit testable.
+2. AngularJS provides reusable components.
+4. It provides the capability to create Single Page Application in a very clean and maintainable way.
+
+DISADVANTAGES :
+Not secure
+Not Degradable
+Not supported everywhere
+
+MODEL :
+The model is responsible for managing application data.
+It responds to the request from view and to the instructions from controller to update itself.
+
+SCOPE :
+Scope refers to the application model. It acts like a glue between the application controller and the view
+
+Directives :
+ng-app − This directive defines and links an AngularJS application to HTML
+ng-model − This directive binds the values of AngularJS application data to HTML input controls
+ng-bind − This directive binds the AngularJS Application data to HTML tags.
+
+WHAT IS JS??
+JavaScript is a lightweight and object-oriented scripting language 
+used to create dynamic HTML pages with interactive effects within a webpage.
+
+ADVANTAGES :
+Less server interaction
+Immediate feedback to the visitors
+Increased interactivity
+Richer interfaces
+
+DISADVANTAGES :
+1) The browser interprets JavaScript differently in different browsers.
+   Thus, the code must be run on various platforms before publishing.
+2) Browser support : The browser interprets JavaScript differently in different browsers
+3) JavaScript only supports single inheritance and not multiple inheritance.
+
+
+
+
+DIFFERENCE
+
+
+
+COMPONENT VS DIRECTIVE
+1. Templates are the mandatory property and always required in Component, but Directive doesn’t always require them.
+2. Only one component can be present per DOM element. There can be more than one directive in a DOM element.
+3. Components should never modify any data or DOM that is out of their own scope. 
+   Directives have isolated scopes, by default the child inherits the scope from its parent.
+
+
+ANGULAR VS ANGULARJS
+1. Angular is typescript based and angularjs is js based
+2.  Angular is component-based while AngularJS uses directives.
+3. Angular uses components that are directives with templates but Angularjs framework has a model-view-controller
+4. AngularJS does not provide mobile support while Angular supports mobile.
+5. angular uses CLI but angular js uses third party IDE
+
+OBSERVABLES :
+Observables provide support for passing messages between parts of your application.
+The subscriber function defines how to obtain or generate values or messages to be published.
+Reactive programming enables the data stream to be emitted from one source called Observable 
+and the emitted data stream to be caught by other sources called Observer through a process called subscription.
+
+LIFECYCLE HOOKS:
+ngOnChanges
+ngOnInit
+ngDoCheck
+ngAfterContentInit
+ngAfterContentChecked
+ngAfterViewInit
+ngAfterViewChecked
+ngOnDestory
